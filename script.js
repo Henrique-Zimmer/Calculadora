@@ -1,22 +1,15 @@
-function adicionar(valor) {
-    document.getElementById("display").value += valor;
-  }
-  
-  function limpar() {
-    document.getElementById("display").value = "";
-  }
-  
-  function apagar() {
-    let tela = document.getElementById("display").value;
-    document.getElementById("display").value = tela.slice(0, -1);
-  }
-  
-  function calcular() {
-    try {
-      let resultado = eval(document.getElementById("display").value);
-      document.getElementById("display").value = resultado;
-    } catch (e) {
-      document.getElementById("display").value = "Erro";
+function operacao(valor) {
+      const display = document.getElementById("display");
+      if (valor === 'C') display.value = '';
+      else if (valor === '←') display.value = display.value.slice(0, -1);
+      else display.value += valor;
     }
-  }
-  
+    
+    function calcular() {
+      try {
+        const display = document.getElementById("display");
+        display.value = eval(display.value);
+      } catch (e) {
+        display.value = "Erro";
+      }
+    }

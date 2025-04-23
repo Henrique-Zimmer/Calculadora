@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #1a1a1a;
+      font-family: sans-serif;
+    }
+    .calculadora {
+      background: #2d2d2d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #000;
+    }
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: right;
+      padding: 5px;
+      border: none;
+      border-radius: 10px;
+      background: #444;
+      color: white;
+    }
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+    }
+    button {
+      height: 60px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #666;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #888;
+    }
+    .zero {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <input type="text" id="display" disabled>
+    <div class="botoes">
+      <button onclick="operacao('C')">C</button>
+      <button onclick="operacao('/')">/</button>
+      <button onclick="operacao('*')">*</button>
+      <button onclick="operacao('←')">←</button>
+      <button onclick="operacao('7')">7</button>
+      <button onclick="operacao('8')">8</button>
+      <button onclick="operacao('9')">9</button>
+      <button onclick="operacao('-')">-</button>
+      <button onclick="operacao('4')">4</button>
+      <button onclick="operacao('5')">5</button>
+      <button onclick="operacao('6')">6</button>
+      <button onclick="operacao('+')">+</button>
+      <button onclick="operacao('1')">1</button>
+      <button onclick="operacao('2')">2</button>
+      <button onclick="operacao('3')">3</button>
+      <button onclick="calcular()">=</button>
+      <button onclick="operacao('0')" class="zero">0</button>
+      <button onclick="operacao('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    function operacao(valor) {
+      const display = document.getElementById("display");
+      if (valor === 'C') display.value = '';
+      else if (valor === '←') display.value = display.value.slice(0, -1);
+      else display.value += valor;
+    }
+    
+    function calcular() {
+      try {
+        const display = document.getElementById("display");
+        display.value = eval(display.value);
+      } catch (e) {
+        display.value = "Erro";
+      }
+    }
+  </script>
+</body>
+</html>
